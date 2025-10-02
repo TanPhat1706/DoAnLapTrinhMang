@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "Voting App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Vote",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes?title=Sample%20Vote%202&createdBy={{createdBy}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes"],
+          "query": [
+            { "key": "title", "value": "Sample Vote 2" },
+            { "key": "createdBy", "value": "{{createdBy}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Option",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/options?text=Option%20X",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "options"],
+          "query": [{ "key": "text", "value": "Option X" }]
+        }
+      }
+    },
+    {
+      "name": "Cast Vote",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/cast?optionId={{optionId}}&userId={{userId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "cast"],
+          "query": [
+            { "key": "optionId", "value": "{{optionId}}" },
+            { "key": "userId", "value": "{{userId}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Results",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/results",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "results"]
+        }
+      }
+    },
+    {
+      "name": "QR Code",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/qrcode",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "qrcode"]
+        }
+      }
+    },
+    {
+      "name": "Export Excel",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/export",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "export"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "createdBy", "value": "1" },
+    { "key": "voteId", "value": "1" },
+    { "key": "optionId", "value": "1" },
+    { "key": "userId", "value": "1" }
+  ]
+}

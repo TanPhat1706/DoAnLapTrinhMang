@@ -1,0 +1,95 @@
+{
+  "info": {
+    "name": "Voting App API (JSON-friendly)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Alice Example\",\n  \"email\": \"alice@example.com\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users"]
+        }
+      }
+    },
+    {
+      "name": "List Users",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/users",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users"]
+        }
+      }
+    },
+    {
+      "name": "Create Vote (JSON)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Class Monitor Election\",\n  \"start\": \"2025-10-02T09:00:00\",\n  \"end\": \"2025-10-03T17:00:00\",\n  \"createdBy\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/json",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "json"]
+        }
+      }
+    },
+    {
+      "name": "Add Option (JSON)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"text\": \"Candidate A\"\n}" },
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/options/json",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "options", "json"]
+        }
+      }
+    },
+    {
+      "name": "Cast Vote (JSON)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"optionId\": 1,\n  \"userId\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/cast/json",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "cast", "json"]
+        }
+      }
+    },
+    {
+      "name": "Get Results",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/votes/{{voteId}}/results",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "votes", "{{voteId}}", "results"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "voteId", "value": "1" }
+  ]
+}
