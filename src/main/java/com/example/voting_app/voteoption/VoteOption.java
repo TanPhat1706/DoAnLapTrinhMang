@@ -1,6 +1,7 @@
 package com.example.voting_app.voteoption;
 
 import com.example.voting_app.vote.Vote;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -15,6 +16,7 @@ public class VoteOption {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VoteID")
+    @JsonBackReference("vote-options")
     private Vote vote;
 
     @Column(name = "OptionText", length = 200, nullable = false)

@@ -102,4 +102,11 @@ public class VoteController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vote-" + voteId + ".xlsx")
                 .body(xlsx);
     }
+
+    // Xoá vote (cùng tất cả kết quả và lựa chọn)
+    @DeleteMapping("/{voteId}")
+    public ResponseEntity<Void> delete(@PathVariable Integer voteId) {
+        voteService.deleteVote(voteId);
+        return ResponseEntity.noContent().build();
+    }
 }

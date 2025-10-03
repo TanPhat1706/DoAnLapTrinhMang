@@ -3,6 +3,7 @@ package com.example.voting_app.user;
 import com.example.voting_app.clazz.StudentClass;
 import com.example.voting_app.role.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -34,10 +35,12 @@ public class AppUser {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ClassID")
+    @JsonIgnore
     private StudentClass studentClass;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RoleID")
+    @JsonIgnore
     private Role role;
 
     // getters and setters

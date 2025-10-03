@@ -2,6 +2,7 @@ package com.example.voting_app.clazz;
 
 import com.example.voting_app.faculty.Faculty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +22,7 @@ public class StudentClass {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FacultyID")
+    @JsonIgnore
     private Faculty faculty;
 
     public Integer getClassId() { return classId; }

@@ -4,6 +4,7 @@ import com.example.voting_app.user.AppUser;
 import com.example.voting_app.vote.Vote;
 import com.example.voting_app.voteoption.VoteOption;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -18,10 +19,12 @@ public class VoteResult {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VoteID")
+    @JsonIgnore
     private Vote vote;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OptionID")
+    @JsonIgnore
     private VoteOption option;
 
     @ManyToOne(fetch = FetchType.LAZY)

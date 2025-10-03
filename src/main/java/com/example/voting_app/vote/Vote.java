@@ -2,6 +2,7 @@ package com.example.voting_app.vote;
 
 import com.example.voting_app.user.AppUser;
 import com.example.voting_app.voteoption.VoteOption;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.*;
@@ -33,6 +34,7 @@ public class Vote {
     private AppUser createdBy;
 
     @OneToMany(mappedBy = "vote", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("vote-options")
     private List<VoteOption> options = new ArrayList<>();
 
     // getters/setters

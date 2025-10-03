@@ -136,4 +136,18 @@ public class VoteService {
     public List<Vote> listVotes() {
         return voteRepository.findAll();
     }
+
+    @Transactional
+    public void deleteVote(Integer voteId) {
+        Vote vote = voteRepository.findById(voteId)
+                .orElseThrow(() -> new IllegalArgumentException("Vote not found"));
+        // Delete results first
+        java.util.List<com.example.voting_app.voteresult.VoteResult> results = resultRepository.findByVote_VoteId(voteId);
+        resultRepository.deleteAll(results);
+        // Delete options
+        java.util.List<com.example.voting_app.voteoption.VoteOption> options = optionRepository.findByVote_VoteId(voteId);
+        optionRepository.deleteAll(options);
+        // Delete vote
+        voteRepository.delete(vote);
+    }
 }
